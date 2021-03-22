@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -420,7 +420,8 @@
 		form.shano input {
 			display: table-cell;
 		}
-		form.shano span{
+
+		form.shano span {
 			display: table-row;
 		}
 	</style>
@@ -429,91 +430,108 @@
 <body>
 	<div>
 		<form class="shano" onsubmit="generate.apply(null, arguments); return false;">
-			<span><label for="testid">ID на тест</label><input type="text" name="testid" value="2179333"> <br /> </span>
-			<span><label for="wtfisthis">УНП</label><input type="text" name="wtfisthis"
-					value="DT576185-1860-0013406"><br /> </span>
-			<span><label for="name">Вашето име</label><input type="text" name="name" value="Гошо петков"><br /> </span>
-			<span><label for="price">Цена на теста</label><input type="text" name="price" value="100,00 лв."><br />
+			<span>
+				<label for="inputt-testid">ID на тест</label>
+				<input id="inputt-testid" type="text" name="testid" value="2179333"> <br />
 			</span>
-			<span><label for="egn">Вашето ЕГН</label><input type="text" name="egn" value="9503257052"><br /> </span>
-			<span><label for="drname">Име на лекар</label><input type="text" name="drname"
-					value="Вивияна Христофорова"><br /> </span>
-			<span><label for="positive">Положителен?</label><input type="checkbox" name="positive" checked><br />
+			<span>
+				<label for="inputt-wtfisthis">УНП</label>
+				<input id="inputt-wtfisthis" type="text" name="wtfisthis" value="DT576185-1860-0013406"><br />
+			</span>
+			<span>
+				<label for="inputt-name">Вашето име</label>
+				<input id="inputt-name" type="text" name="name" value="Гошо петков"><br />
+			</span>
+			<span>
+				<label for="inputt-price">Цена на теста</label>
+				<input id="inputt-price" type="text" name="price" value="100,00 лв."><br />
+			</span>
+			<span>
+				<label for="inputt-egn">Вашето ЕГН</label>
+				<input id="inputt-egn" type="text" name="egn" value="9503257052"><br />
+			</span>
+			<span>
+				<label for="inputt-drname">Име на лекар</label>
+				<input id="inputt-drname" type="text" name="drname" value="Вивияна Христофорова"><br />
+			</span>
+			<span>
+				<label for="inputt-positive">Положителен?</label>
+				<input id="inputt-positive" type="checkbox" name="positive" checked><br />
 			</span>
 			<button type="submit">Генерирай</button><br />
 		</form>
 	</div>
+	<script type="text/javascript">
+		function generate(e) {
+			const data = new FormData(e.target);
+			const isPositive = ['on', true].includes(data.get('positive'));
+			// debugger;
+			const shitHtml = (String.raw`
+					<body>
+						<input class="do-not-print" type="submit" value="Принтирай резултатите" onclick="window.print();"><table width="640" border="0" cellpadding="3" cellspacing="0" class="table"><tbody><tr>
+						<td align="center" width="130"><a href="default.htm"><img src="images/logo.JPG" border="0" alt="HOME"></a></td>
+						<td align="right"><h2>СМДЛ РАМУС ООД</h2>София, ул. "Ангиста" 2-4;
+						02/943-1196, 02/944-8206;
+						www.ramuslab.com; info@ramuslab.com</td></tr>
+								<tr> </tr>
+							</tbody></table>
+						<br><table width="640" border="0" cellpadding="3" cellspacing="0" class="table">
+						<tbody><tr bgcolor="#eeeeee">
+						<td align="center" width="90" class="right">07.08.2020</td>
+						<td align="left" class="right"><b>${data.get('name')}</b> ЕГН : ${data.get('egn')}  </td>
+						<td align="center" width="100">ID: ${data.get('testid')}</td>
+						</tr></tbody></table>
+						<br><table width="640" border="0" cellpadding="0" cellspacing="0">
+						<tbody><tr>
+						<td align="left" width="140">Лекуващ лекар :</td>
+						<td align="left">Служ. Лекар</td>
+						</tr>
+						<tr>
+						<td align="left" width="140">Филиал :</td>
+						<td align="left"></td>
+						</tr>
+						<tr>
+						<td align="left" width="140"></td>
+						<td align="left">  </td>
+						</tr>
+						</tbody></table>
+						<br><table width="640" border="0" cellpadding="0" cellspacing="0" class="table"><tbody><tr bgcolor="#eeeeee">
+										<td class="table" colspan="6"><b>Вирусология</b></td>
+										</tr><tr bgcolor="#eeeeee">
+								<td align="left" width="206" class="bottom_right">Име на теста(изследване)</td>
+								<td align="right" width="10" class="test">&nbsp;</td>
+								<td align="right" width="80" class="bottom_right">Резултат &nbsp;</td>
+								<td align="left" width="90" class="bottom_right">&nbsp;Единици</td>
+								<td align="left" width="180" class="bottom_right">Референтна стойност</td>
+								<td align="center" width="63" class="test">Метод</td>
+								</tr><tr>
+						<td colspan="7">
+						<table cellpadding="1" cellspacing="0" border="0"><tbody><tr bgcolor="#ffffff">
+						<td align="left" width="206" class="test">PCR SARS-CoV-2</td>
+						<td align="right" width="10" class="test">&nbsp;</td>
+						<td align="right" class="test" width="80"> (${isPositive ? '+' : '-'})${isPositive ? 'positive' : 'negative'}&nbsp;</td> <td align="left" width="90" class="test"> &nbsp; &nbsp;</td>
+									<td align="left" width="180" class="test">&nbsp;</td>
+									<td align="left" width="63" class="test">&nbsp; </td></tr></tbody></table>
+									</td>
+									</tr></tbody></table><p>
+						<table width="640" border="0" cellpadding="3" cellspacing="0">
+						<tbody><tr>
+						<td>
+						<b>Забележка :</b><br>H - резултатът е над нормата (High - висок)<br>L - резултатът е под нормата (Low - нисък) <p>     </p></td></tr>
+						<tr><td><p>
+						<br>
+							<b>Внимание !</b> Лабораторните резултати не са диагноза, а основание за такава. Приемането на каквито и да било лекарствени средства без лекарско предписание, може да бъде опасно за вашето здраве. Обръщайте се за тълкуване на резултатите само към квалифициран лекар. </p></td><td></td></tr>	<tr><td align="right"><b>Лабораторен лекар :</b><br> ${data.get('drname')}<br> </td></tr>
+						<tr><td></td></tr></tbody></table> </p><div><strong>УНП</strong>: ${data.get('wtfisthis')}</div>
+									<div><strong>Платено</strong>: 100,00 лв.</div><br>
+	
+					</body>
+				`);
+
+			document.body.outerHTML = shitHtml;
+			document.querySelector('head>title').innerHTML = 'Проверка на резултати | Лаборатория Рамус';
+		}
+	</script>
 </body>
 
-<script lang="javascript">
-	function generate(e) {
-		const data = new FormData(e.target);
-		const isPositive = ['on', true].includes(data.get('positive'));
-		// debugger;
-		const shitHtml = (String.raw`
-				<body>
-					<input class="do-not-print" type="submit" value="Принтирай резултатите" onclick="window.print();"><table width="640" border="0" cellpadding="3" cellspacing="0" class="table"><tbody><tr>
-					<td align="center" width="130"><a href="default.htm"><img src="images/logo.JPG" border="0" alt="HOME"></a></td>
-					<td align="right"><h2>СМДЛ РАМУС ООД</h2>София, ул. "Ангиста" 2-4;
-					02/943-1196, 02/944-8206;
-					www.ramuslab.com; info@ramuslab.com</td></tr>
-							<tr> </tr>
-						</tbody></table>
-					<br><table width="640" border="0" cellpadding="3" cellspacing="0" class="table">
-					<tbody><tr bgcolor="#eeeeee">
-					<td align="center" width="90" class="right">07.08.2020</td>
-					<td align="left" class="right"><b>${data.get('name')}</b> ЕГН : ${data.get('egn')}  </td>
-					<td align="center" width="100">ID: ${data.get('testid')}</td>
-					</tr></tbody></table>
-					<br><table width="640" border="0" cellpadding="0" cellspacing="0">
-					<tbody><tr>
-					<td align="left" width="140">Лекуващ лекар :</td>
-					<td align="left">Служ. Лекар</td>
-					</tr>
-					<tr>
-					<td align="left" width="140">Филиал :</td>
-					<td align="left"></td>
-					</tr>
-					<tr>
-					<td align="left" width="140"></td>
-					<td align="left">  </td>
-					</tr>
-					</tbody></table>
-					<br><table width="640" border="0" cellpadding="0" cellspacing="0" class="table"><tbody><tr bgcolor="#eeeeee">
-									<td class="table" colspan="6"><b>Вирусология</b></td>
-									</tr><tr bgcolor="#eeeeee">
-							<td align="left" width="206" class="bottom_right">Име на теста(изследване)</td>
-							<td align="right" width="10" class="test">&nbsp;</td>
-							<td align="right" width="80" class="bottom_right">Резултат &nbsp;</td>
-							<td align="left" width="90" class="bottom_right">&nbsp;Единици</td>
-							<td align="left" width="180" class="bottom_right">Референтна стойност</td>
-							<td align="center" width="63" class="test">Метод</td>
-							</tr><tr>
-					<td colspan="7">
-					<table cellpadding="1" cellspacing="0" border="0"><tbody><tr bgcolor="#ffffff">
-					<td align="left" width="206" class="test">PCR SARS-CoV-2</td>
-					<td align="right" width="10" class="test">&nbsp;</td>
-					<td align="right" class="test" width="80"> (${isPositive ? '+' : '-'})${isPositive ? 'positive' : 'negative'}&nbsp;</td> <td align="left" width="90" class="test"> &nbsp; &nbsp;</td>
-								<td align="left" width="180" class="test">&nbsp;</td>
-								<td align="left" width="63" class="test">&nbsp; </td></tr></tbody></table>
-								</td>
-								</tr></tbody></table><p>
-					<table width="640" border="0" cellpadding="3" cellspacing="0">
-					<tbody><tr>
-					<td>
-					<b>Забележка :</b><br>H - резултатът е над нормата (High - висок)<br>L - резултатът е под нормата (Low - нисък) <p>     </p></td></tr>
-					<tr><td><p>
-					<br>
-						<b>Внимание !</b> Лабораторните резултати не са диагноза, а основание за такава. Приемането на каквито и да било лекарствени средства без лекарско предписание, може да бъде опасно за вашето здраве. Обръщайте се за тълкуване на резултатите само към квалифициран лекар. </p></td><td></td></tr>	<tr><td align="right"><b>Лабораторен лекар :</b><br> ${data.get('drname')}<br> </td></tr>
-					<tr><td></td></tr></tbody></table> </p><div><strong>УНП</strong>: ${data.get('wtfisthis')}</div>
-								<div><strong>Платено</strong>: 100,00 лв.</div><br>
-
-				</body>
-			`);
-
-		document.body.outerHTML = shitHtml;
-		document.querySelector('head>title').innerHTML = 'Проверка на резултати | Лаборатория Рамус';
-	}
-</script>
 
 </html>
