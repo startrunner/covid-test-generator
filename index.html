@@ -435,6 +435,10 @@
 				<input id="inputt-testid" type="text" name="testid" value="2179333"> <br />
 			</span>
 			<span>
+				<label for="inputt-testdate">Дата на тест</label>
+				<input id="inputt-testdate" type="text" name="testdate" value="01.01.2021"> <br />
+			</span>
+			<span>
 				<label for="inputt-wtfisthis">УНП</label>
 				<input id="inputt-wtfisthis" type="text" name="wtfisthis" value="DT576185-1860-0013406"><br />
 			</span>
@@ -477,7 +481,7 @@
 							</tbody></table>
 						<br><table width="640" border="0" cellpadding="3" cellspacing="0" class="table">
 						<tbody><tr bgcolor="#eeeeee">
-						<td align="center" width="90" class="right">07.08.2020</td>
+						<td align="center" width="90" class="right">${data.get('testdate')}</td>
 						<td align="left" class="right"><b>${data.get('name')}</b> ЕГН : ${data.get('egn')}  </td>
 						<td align="center" width="100">ID: ${data.get('testid')}</td>
 						</tr></tbody></table>
